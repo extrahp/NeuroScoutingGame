@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\presentBall.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\buttonPress.cs">
     <Files>
-      <File FileName="Assets\buttonPress.cs" Line="20" Column="30" />
-      <File FileName="Assets\createBall.cs" Line="34" Column="2" />
-      <File FileName="Assets\presentBall.cs" Line="37" Column="25" />
+      <File FileName="Assets\buttonPress.cs" Line="7" Column="13" />
+      <File FileName="Assets\createBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\presentBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\destroyInSeconds.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

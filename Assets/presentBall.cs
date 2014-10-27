@@ -30,8 +30,8 @@ public class presentBall : MonoBehaviour {
 		balls[7] = ball8;
 
 		int theBall = (int) Random.Range (0f, 8f);
-		GameObject ball = Instantiate (balls[theBall], new Vector3(transform.position.x+.3f, transform.position.y-0.5f,
-		                                                           transform.position.z + 2.1f), new Quaternion(0,20,4,-1)) as GameObject;
+		GameObject ball = Instantiate (balls[theBall], new Vector3(transform.position.x+.3f, transform.position.y-0.2f,
+		                                                           transform.position.z + 2.1f), new Quaternion(0,25,4,-1)) as GameObject;
 		ball.SetActive (true);
 		generator.GetComponent<createBall>().setTheBall (theBall);
 	}
@@ -45,10 +45,10 @@ public class presentBall : MonoBehaviour {
 
 	void OnGUI () {
 		if (showing) {
-			GUI.skin.label.fontSize = 50;
-			GUI.Label (new Rect (450, 10, 700, 100), "Target Ball: ");
+			GUI.skin.label.fontSize = Screen.width/20;
+			GUI.Label (new Rect (Screen.width/2-Screen.width/10, Screen.height/3-Screen.height/4, Screen.width/2+Screen.width/10, Screen.height/2-Screen.height/6), "Target Ball: ");
 			
-			GUI.Label (new Rect (300, 600, 700, 100), "Hit Space when you see it!");
+			GUI.Label (new Rect (Screen.width/2-Screen.width/4, Screen.height/2+Screen.height/3, Screen.width/2+Screen.width/8, Screen.height/2+Screen.height/2), "Hit Space when you see it!");
 		}
 	}
 }
