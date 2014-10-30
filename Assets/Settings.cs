@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class Settings : MonoBehaviour {
-
+	
+	//has the player selected how many trials?
 	bool selected;
+	
+	//number of trials
 	int trials;
 
 	// Use this for initialization
@@ -14,15 +17,19 @@ public class Settings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
+		//if player has selected number of trials, begin game
 		if (selected) {
 			GetComponent<presentBall>().enabled = true;
 		}
 	}
 	
+	//returns how many trials
 	public int getTrials () {
 		return trials;
 	}
 	
+	//display the buttons and options for trials
 	void OnGUI () {
 		if (!selected) {
 			GUI.skin.label.fontSize = Screen.width / 20;

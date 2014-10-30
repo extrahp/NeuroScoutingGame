@@ -14,6 +14,7 @@ public class Scorer : MonoBehaviour {
 	
 	}
 	
+	//if a ball touches this trigger in the hole
 	void OnTriggerEnter(Collider col) {
 		scores.GetComponent<presentBall>().addScore(col.gameObject.GetComponent<buttonPress>().getValue());
 	}
