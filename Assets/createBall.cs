@@ -16,8 +16,8 @@ public class createBall : MonoBehaviour {
 	bool canCreate;
 	GameObject[] balls = new GameObject[8];
 	int series = 6;
-	int correctBall = 0;
 	bool doneTrial;
+	int prev;
 	
 	// Use this for initialization
 	void Start () {
@@ -40,12 +40,12 @@ public class createBall : MonoBehaviour {
 		time += Time.deltaTime;
 		timeInt = (int)time;
 		int rand = (int) Random.Range (0f, 8f);
-		int prev = rand;
 		while (prev == rand) {
 			rand = (int) Random.Range (0f, 8f);
 		}
 		if (timeInt > 2 && timeInt % 3 == 0 && canCreate && series > 0) {
 			GameObject ball = Instantiate (balls[rand], transform.position, transform.rotation) as GameObject;
+			prev = rand;
 			ball.SetActive (true);
 			series -= 1;
 			canCreate = false;
@@ -59,7 +59,6 @@ public class createBall : MonoBehaviour {
 	}
 
 	public void setTheBall(int i) {
-		correctBall = i;
 		doneTrial = false;
 		time = 0;
 		timeInt = 0;

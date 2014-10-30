@@ -30,6 +30,7 @@ public class buttonPress : MonoBehaviour {
 			player.GetComponent<presentBall>().checkBall(value);
 		}
 		if (time > 3) {
+			player.GetComponent<presentBall>().missCheck(value);
 			Destroy(gameObject);
 		}
 	}

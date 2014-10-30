@@ -24,6 +24,7 @@ public class presentBall : MonoBehaviour {
 	int trials;
 	bool showResults;
 	int wentIns;
+	int missed;
 	// Use this for initialization
 	void Start () {
 		
@@ -74,11 +75,8 @@ public class presentBall : MonoBehaviour {
 	
 	public void addTime (float t) {
 		timeValues.Add (t);
-		Debug.Log (t);
 	}
 	public void checkBall (int v) {
-		Debug.Log (theBall+1);
-		Debug.Log (v);
 		if (theBall+1 == (v))
 			correctHits.Add (1);
 		else 
@@ -100,11 +98,17 @@ public class presentBall : MonoBehaviour {
 		}
 		return howmany;
 	}
+	int getMissed() {
+		return missed;
+	}
 	public void addScore(int i) {
 		if (i == theBall + 1)
 			wentIns ++;
 	}
-	
+	public void missCheck(int i) {
+		if (i == theBall + 1)
+			missed ++;
+	}
 	void OnGUI () {
 		if (showing) {
 			GUI.skin.label.fontSize = Screen.width/20;
@@ -114,18 +118,21 @@ public class presentBall : MonoBehaviour {
 		}
 		
 		if (showResults) {
+			float percent = 0;
 			GUI.skin.label.fontSize = Screen.width/30;
 			GUI.Label (new Rect (Screen.width / 50, Screen.height / 7, Screen.width, Screen.height), "Your Final Results:");
 			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + Screen.height / 20, Screen.width, Screen.height), "Average Reaction Time: " + getAverageTime().ToString() + " seconds");
-			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + Screen.height / 10, Screen.width, Screen.height), "Number of Correct Hits: " + getCorrect().ToString() + " out of " + correctHits.ToArray ().Length.ToString());
+			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (2 * Screen.height / 20) , Screen.width, Screen.height), "Number of Correct Hits: " + getCorrect().ToString() + " out of " + correctHits.ToArray ().Length.ToString());
 			if (correctHits.ToArray ().Length == 0)
-				GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + Screen.height / 5, Screen.width, Screen.height), "Accuracy: None!");
+				GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (3 * Screen.height / 20), Screen.width, Screen.height), "Accuracy: None!");
 			else {
-				float percent;
-				percent = (float) getCorrect() / (float)correctHits.ToArray ().Length;
-				GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + Screen.height / 5, Screen.width, Screen.height), "Accuracy: " + percent.ToString() + "%");
+				percent = (float) (getCorrect() / (float)correctHits.ToArray ().Length) * 100;
+				GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (3 * Screen.height / 20), Screen.width, Screen.height), "Accuracy: " + percent.ToString() + "%");
 			}
-			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + Screen.height / 2, Screen.width, Screen.height), "Bonus! Balls Went In: " + wentIns.ToString());
+			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (4 * Screen.height / 20), Screen.width, Screen.height), "Missed: " + getMissed().ToString());
+			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (5 * Screen.height / 20), Screen.width, Screen.height), "Bonus! Balls Went In: " + wentIns.ToString());
+			float final = ((2-getAverageTime())*100 + getCorrect()*100 - (correctHits.ToArray ().Length-getCorrect ())*100 + percent - getMissed()*100 + wentIns * 100);
+			GUI.Label (new Rect (Screen.width / 40, Screen.height / 4 + (7 * Screen.height / 20), Screen.width, Screen.height), "Final Score: " + final.ToString());
 			
 		}
 	}
